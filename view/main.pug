@@ -10,3 +10,11 @@ html
         form(action="/target", method="post")
             input(type="text", name="url", placeholder="input target url")
             button(type="submit") Start
+
+        
+        table
+            each image in content
+                tr
+                    td
+                        img(src=image)
+        

@@ -22,13 +22,13 @@ module.exports = function(app){
 
         crawler.getImage(url,function(content){
             
-            for (let i = 0; i < content.length; i++) {
-                const element = content[i];
-                console.log(element);
+            // for (let i = 0; i < content.length; i++) {
+            //     const element = content[i];
+            //     console.log("num "+i+" : "+element);
                 
-            }
+            // }
 
-            res.render('main');
+            res.render('main',{content : content});
             console.log("rendering done");
             
         });

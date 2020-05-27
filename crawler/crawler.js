@@ -1,30 +1,31 @@
 
-exports.getImage = function(url){
+exports.getImage = function(url,callback){
 
     const req = require('request');
     const cheerio = require('cheerio');
 
-    var str = 'hi';
-
+    
+    let content = new Array();
     req({url:url,encoding:null},(error,response,body) => {
         if(error) throw error;
-        str = 'a';
+        
         let $ = cheerio.load(body);
         
         try{
-            str = 'b';
+            
             
 
             let img;
             $('div').find('img').each(function (index,elem){
 
                 img = $(this).attr('src');
-
-                console.log(img);
-                str = 'c';
+                content.push(img);
+                //console.log(img);
+                
+               
             })
             console.log("img src get done");
-            
+            callback(content);
 
         }catch(error){
             console.error(error);
@@ -35,7 +36,7 @@ exports.getImage = function(url){
     console.log("crawler done");
     
     
-    return str;
+    
 
 };
     

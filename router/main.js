@@ -20,11 +20,23 @@ module.exports = function(app){
         var url = req.body.url
         console.log(url);
 
-        console.log(crawler.getImage(url));
+        crawler.getImage(url,function(content){
+            
+            for (let i = 0; i < content.length; i++) {
+                const element = content[i];
+                console.log(element);
+                
+            }
+
+            res.render('main');
+            console.log("rendering done");
+            
+        });
 
     
-        console.log("done");
+        console.log("post done");
         
-        res.render('main');
+        
+        
     });
 }

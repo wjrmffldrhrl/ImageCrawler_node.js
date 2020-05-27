@@ -11,7 +11,10 @@ module.exports = function(app){
     app.use(bodyParser.urlencoded({extended:true}));
 
     app.get('/',function(req,res){
-        res.render('main',{name:'hello'});
+
+
+
+        res.render('main',{content:[" "]});
     });
 
     //사용자 target url 받기
@@ -22,11 +25,11 @@ module.exports = function(app){
 
         crawler.getImage(url,function(content){
             
-            // for (let i = 0; i < content.length; i++) {
-            //     const element = content[i];
-            //     console.log("num "+i+" : "+element);
+            for (let i = 0; i < content.length; i++) {
+                const element = content[i];
+                console.log("num "+i+" : "+element);
                 
-            // }
+            }
 
             res.render('main',{content : content});
             console.log("rendering done");
@@ -35,8 +38,7 @@ module.exports = function(app){
 
     
         console.log("post done");
-        
-        
+
         
     });
 }

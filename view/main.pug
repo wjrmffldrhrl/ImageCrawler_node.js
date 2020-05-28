@@ -11,12 +11,18 @@ html
             input(type="text", name="url", placeholder="input target url")
             button(type="submit") Start
 
+        - var tableCnt = 0;
+
         if useAble
             table
                 each image in content
-                    tr
-                        td
-                            img(src=image)
+                    - tableCnt = tableCnt+1
+                    - table4 = tableCnt%4
+                    if table4 == 0
+                        tr
+                    td    
+                        img(src=image, width="200", height="200", border="0")
+
         else
             h2 Not URL
             

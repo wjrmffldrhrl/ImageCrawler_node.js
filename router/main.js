@@ -50,4 +50,18 @@ module.exports = function(app){
 
         
     });
+
+    app.post('/download',function(req,res) {
+        var item = new Array();
+        var content = new Array();
+        item =  req.body.item;
+   
+        item.forEach(element => {
+            console.log(element);
+                
+        });
+        
+        res.redirect(307,'/target');
+        
+    });
 }

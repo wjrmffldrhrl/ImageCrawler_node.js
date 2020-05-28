@@ -3,6 +3,8 @@ html
     head
         meta(charset='utf-8')
         title IMG Crawler
+        style
+            include ./style.css
 
     body
         h1 IMG Crawler
@@ -11,18 +13,27 @@ html
             input(type="text", name="url", placeholder="input target url")
             button(type="submit") Start
 
-        - var tableCnt = 0;
+        - var tableCnt = -1;
+        - var itemIndex = -1;
 
-        if useAble
-            table
-                each image in content
-                    - tableCnt = tableCnt+1
-                    - table4 = tableCnt%4
-                    if table4 == 0
-                        tr
-                    td    
-                        img(src=image, width="200", height="200", border="0")
+        div
+            form(action="/download",method="post")
+                button(type="submit") download Image
+                if useAble
+                    table
+                        each image in content
+                            - tableCnt = tableCnt+1
+                            - itemIndex = itemIndex+1
+                            - table4 = tableCnt%4
+                            if table4 == 0
+                                tr
+                            td
+                                div(class="image_item")    
+                                    div
+                                        img(src=image, width="200", height="200", border="0")
+                                    div(class="check_box_div")
+                                        input(name="item" type="checkbox" value=image)
 
-        else
-            h2 Not URL
+                else
+                    h2 Not URL
             

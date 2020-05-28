@@ -14,24 +14,33 @@ module.exports = function(app){
 
 
 
-        res.render('main',{content:[" "]});
+        res.render('main',{content:[" "],useAble:true});
     });
 
     //사용자 target url 받기
     app.post('/target',function(req,res){
         
         var url = req.body.url
-        console.log(url);
+        console.log("input url : "+url);
 
+        // 내부에서 url 유효성 검사
+        // 사용 가능 시 컨텐트 반환
+        // 사용 불가능 할 시 not Url 반환
         crawler.getImage(url,function(content){
             
-            for (let i = 0; i < content.length; i++) {
+            var useAble = true;
+
+            if(content[0] == "not Url"){
+                useAble = false;
+            }
+
+            for (let i = 0; i < content.length && useAble; i++) {
                 const element = content[i];
                 console.log("num "+i+" : "+element);
                 
             }
 
-            res.render('main',{content : content});
+            res.render('main',{content : content, useAble:useAble});
             console.log("rendering done");
             
         });

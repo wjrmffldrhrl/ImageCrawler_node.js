@@ -11,10 +11,12 @@ html
             input(type="text", name="url", placeholder="input target url")
             button(type="submit") Start
 
-        
-        table
-            each image in content
-                tr
-                    td
-                        img(src=image)
+        if useAble
+            table
+                each image in content
+                    tr
+                        td
+                            img(src=image)
+        else
+            h2 Not URL
             

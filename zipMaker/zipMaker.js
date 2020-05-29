@@ -3,6 +3,7 @@ exports.getZip = function(fileList,callback) {
     var fs = require('fs');
     var zip = new require('node-zip')();
 
+    
     var dir = fileList[0].split('/');
 
     // ./contents/userId/

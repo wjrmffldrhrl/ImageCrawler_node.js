@@ -19,6 +19,7 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.17.1",
+    "jszip": "^3.4.0",
     "pug": "^3.0.0",
     "request": "^2.88.2",
     "valid-url": "^1.0.9"

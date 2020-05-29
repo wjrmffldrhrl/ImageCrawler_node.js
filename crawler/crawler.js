@@ -34,7 +34,7 @@ exports.getImage = function (url, callback) {
                     //console.log(img);
 
 
-                })
+                });
                 console.log("img src get done");
                 callback(content);
 

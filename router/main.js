@@ -1,9 +1,13 @@
 
 module.exports = function(app){
+    var fs = require('fs');
     var bodyParser = require('body-parser');
 //    var JSZip = require('jszip');
     var crawler = require('../crawler/crawler.js');
     var downloader = require('../imageDownloader/imgDownloader.js');
+
+    //사용자를 구분하기 위한 id값 부여
+    var userId = 0;
 
     // post 요청을 처리하기 위한 bodyParser
     // 기본 request는 body를 제공하지만 내부 기능이 포함되지 않아
@@ -11,12 +15,14 @@ module.exports = function(app){
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended:true}));
 
+    //main page
     app.get('/',function(req,res){
 
         res.render('main',{content:[" "],useAble:true});
     });
 
-    //사용자 target url 받기
+    // 사용자 target url 받기
+    // target url에서 크롤링 진행
     app.post('/target',function(req,res){
         
         var url = req.body.url
@@ -50,29 +56,28 @@ module.exports = function(app){
         
     });
 
+
+    // 추출한 img src중 사용자가 선택한 이미지 다운로드
     app.post('/download',function(req,res) {
         var item = new Array();
         var content = new Array();
+        
+        //user 카운트 
+        userId++;
 
         // 체크된 이미지 값 읽기
         item =  req.body.item;
    
+        //체크된 모든 이미지값을 다운로드한다.
         var fileCount = 0;
-        item.forEach(element => {
-            var dir = "./contents/";
-            var filename = dir+"img"+fileCount+".jpg";
-            fileCount++;
-            downloader.downloadImg(element,filename,function() {
-                console.log("download "+filename+" done");
-                
-            })
-            console.log(element);
-                
+        downloader.downloadImgs(item,userId,function(fileList) {
+            console.log("file List : " + fileList);
+            
         });
+            
         
-        //return res.download('./router/imgs/test.JPG');
 
-        res.redirect(307,'/target');
+        res.redirect('/');
         
     });
 }

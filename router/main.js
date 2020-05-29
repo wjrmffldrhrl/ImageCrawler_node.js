@@ -79,8 +79,11 @@ module.exports = function(app){
                     console.log(element);
                     
                 });
-                zipMaker.getZip(fileList,function(params) {
+                zipMaker.getZip(fileList,function(zipfile) {
                     
+                    res.download(zipfile);
+                    
+
                 });
             }
             
@@ -88,8 +91,7 @@ module.exports = function(app){
         
         
         
-
-        res.redirect('/');
+        //res.redirect('/');
         
     });
 }

@@ -5,7 +5,7 @@ module.exports = function(app){
 //    var JSZip = require('jszip');
     var crawler = require('../crawler/crawler.js');
     var downloader = require('../imageDownloader/imgDownloader.js');
-
+    var zipMaker = require('../zipMaker/zipMaker.js');
     //사용자를 구분하기 위한 id값 부여
     var userId = 0;
 
@@ -59,22 +59,34 @@ module.exports = function(app){
 
     // 추출한 img src중 사용자가 선택한 이미지 다운로드
     app.post('/download',function(req,res) {
-        var item = new Array();
+        var items = new Array();
         var content = new Array();
         
         //user 카운트 
         userId++;
 
         // 체크된 이미지 값 읽기
-        item =  req.body.item;
+        items =  req.body.item;
    
         //체크된 모든 이미지값을 다운로드한다.
-        var fileCount = 0;
-        downloader.downloadImgs(item,userId,function(fileList) {
-            console.log("file List : " + fileList);
+        var fileList = new Array();
+        downloader.downloadImgs(items,userId,function(fileName) {
+            fileList.push(fileName);
+
+            //체크된 이미지의 수와 다운로드한 파일의 수가 같아지면 zip 파일 생성
+            if (items.length == fileList.length) {
+                fileList.forEach(element => {
+                    console.log(element);
+                    
+                });
+                zipMaker.getZip(fileList,function(params) {
+                    
+                });
+            }
             
         });
-            
+        
+        
         
 
         res.redirect('/');

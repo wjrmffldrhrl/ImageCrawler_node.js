@@ -5,15 +5,16 @@ html
         title IMG Crawler
         style
             include ./style.css
-        script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js')
-        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
+        //- script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js')
+        link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css", 
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk", crossorigin="anonymous")
 
     body
         h1 IMG Crawler
 
         form(action="/target", method="post")
             input(type="text", name="url", placeholder="input target url")
-            button(type="submit") Start
+            button.btn.btn-primary(type="submit") Start
 
         - var tableCnt = -1;
         - var itemIndex = -1;

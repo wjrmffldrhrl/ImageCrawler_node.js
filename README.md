@@ -3,9 +3,12 @@ target URL에 존재하는 모든 이미지파일을 크롤링 하여 사용자�
 
 ## Web FrameWork
 Express
-## Template Engine
-Pug
-## Server
+
+## Front-end
+React
+
+## Back-end
 Node.js
+
 ## Cloud
 Aws

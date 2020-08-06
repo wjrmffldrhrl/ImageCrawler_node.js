@@ -1,5 +1,5 @@
 
-module.exports = function(app){
+module.exports = (app) => {
     var fs = require('fs');
     var bodyParser = require('body-parser');
 //    var JSZip = require('jszip');

@@ -5,6 +5,7 @@ import FrontSide from './FrontSide';
 
 class FlipCard extends React.Component {
     render() {
+
         return (
             <div className="col-xs-12 col-sm-6 col-md-4">
                 <div className="mainflip flip-0">
@@ -13,6 +14,7 @@ class FlipCard extends React.Component {
                         <FrontSide num={this.props.num} imgSrc={this.props.imgSrc} />
                         <BackSide imgSrc={this.props.imgSrc} />
                     </div>
+
 
 
 

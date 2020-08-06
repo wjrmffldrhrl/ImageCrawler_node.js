@@ -109,6 +109,8 @@ section .section-title {
 .frontside .card,
 .backside .card {
     min-height: 312px;
+    max-height: 312px;
+
 }
 
 .backside .card a {
@@ -122,6 +124,10 @@ section .section-title {
 }
 
 .frontside .card .card-body img {
+    width: 240px;
+    height: 240px;
+}
+.backside .card .card-body img {
     width: 120px;
     height: 120px;
     border-radius: 50%;
